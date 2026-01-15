@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Project MIRAGE</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Locomotive Scroll -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor"></div>
+  <div class="nav-ambient-glow"></div>
+  <nav class="fixed-nav glass-nav">
+  <div class="nav-inner">
+    
+    <div class="nav-left">
+      <span class="logo">MIRAGE</span>
+    </div>
+
+    <ul class="nav-links">
+      <li class="nav-item">About</li>
+      <li class="nav-item">Pricing</li>
+      <li class="nav-item">Contact</li>
+    </ul>
+
+    <div class="nav-right">
+      <button id="theme-switcher">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <mask id="moon-mask">
+            <rect x="0" y="0" width="24" height="24" fill="white" />
+            <circle cx="18" cy="6" r="8" fill="black" />
+          </mask>
+          <circle cx="12" cy="12" r="6" fill="currentColor" mask="url(#moon-mask)" class="moon-icon" />
+          <path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" fill="currentColor" class="sun-icon" />
+          <path d="M12 4V2M12 22V20M4 12H2M22 12H20M19.071 4.92893L17.6569 6.34315M6.34315 17.6569L4.92893 19.071M19.071 19.071L17.6569 17.6569M6.34315 6.34315L4.92893 4.92893" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon" />
+        </svg>
+      </button>
+      
+    </div>
+
+  </div>
+</nav>
+
+
+  <main data-scroll-container>
+
+    
+
+    <section class="hero" data-scroll-section>
+      <canvas id="avatar-canvas"></canvas>
+      <div class="hero-content">
+        <h1 data-scroll data-scroll-speed="2">MIRAGE</h1>
+        <p class="hero-tagline" data-scroll data-scroll-speed="1">Beyond Static Chatbots</p>
+        <p class="hero-description" data-scroll data-scroll-speed="0.5">
+          Lifelike, expressive AI avatars that listen, reason, speak, and react.<br>
+          Bridging the emotional gap between humans and machines.
+        </p>
+        <div class="hero-buttons" data-scroll data-scroll-speed="0.5">
+          <a href="home.html" style="text-decoration: none;">
+            <button class="magnetic-btn">
+              <span>Get Started</span>
+            </button>
+          </a>
+          <button class="magnetic-btn secondary">
+            <span>Watch Demo</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro" data-scroll-section>
+      <div class="intro-content">
+        <h2 class="section-title" data-scroll>Advancing Human–AI Interaction</h2>
+        <p class="intro-text" data-scroll>
+          Project MIRAGE focuses on advancing human–AI interaction by moving beyond static, text-only chatbots 
+          to lifelike, expressive AI avatars. The goal is to create a digital human clone capable of listening, 
+          reasoning, speaking, and visually reacting in a coherent and emotionally engaging manner.
+        </p>
+        <p class="intro-text" data-scroll>
+          Rather than prioritizing perfect photorealism, MIRAGE emphasizes synchronized multimodal interaction—where 
+          speech, facial animation, and expressive feedback align naturally with the AI's reasoning. These avatars 
+          can act as teachers, assistants, customer service agents, or companions, helping reduce the emotional and 
+          communicative gap between humans and machines through real-time, human-like interaction.
+        </p>
+      </div>
+    </section>
+
+    <section class="features" data-scroll-section>
+      <h2 class="section-title center" data-scroll>Multimodal Interaction</h2>
+      <div class="features-grid">
+        <div class="feature-card" data-scroll>
+          <div class="feature-icon">👂</div>
+          <h3>Listen</h3>
+          <p>Advanced speech recognition that understands context, tone, and intent</p>
+        </div>
+        <div class="feature-card" data-scroll>
+          <div class="feature-icon">🧠</div>
+          <h3>Reason</h3>
+          <p>Deep reasoning capabilities that process and understand complex queries</p>
+        </div>
+        <div class="feature-card" data-scroll>
+          <div class="feature-icon">💬</div>
+          <h3>Speak</h3>
+          <p>Natural, expressive speech synthesis with emotional nuance</p>
+        </div>
+        <div class="feature-card" data-scroll>
+          <div class="feature-icon">😊</div>
+          <h3>React</h3>
+          <p>Synchronized facial animation and expressive feedback in real-time</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="use-cases" data-scroll-section>
+      <h2 class="section-title center" data-scroll>Use Cases</h2>
+      <div class="bento-grid">
+        <div class="card use-case-card" data-scroll>
+          <div class="use-case-icon">👨‍🏫</div>
+          <h3>Teacher</h3>
+          <p>Personalized educational experiences with adaptive teaching methods and visual demonstrations</p>
+        </div>
+        <div class="card use-case-card" data-scroll>
+          <div class="use-case-icon">🤝</div>
+          <h3>Assistant</h3>
+          <p>Intelligent task management and support with natural conversation flow</p>
+        </div>
+        <div class="card use-case-card" data-scroll>
+          <div class="use-case-icon">💼</div>
+          <h3>Customer Service</h3>
+          <p>24/7 support with empathetic responses and problem-solving capabilities</p>
+        </div>
+        <div class="card use-case-card" data-scroll>
+          <div class="use-case-icon">❤️</div>
+          <h3>Companion</h3>
+          <p>Emotional support and engaging conversations that feel genuinely human</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="how-it-works" data-scroll-section>
+      <h2 class="section-title center" data-scroll>How It Works</h2>
+      <div class="steps">
+        <div class="step" data-scroll>
+          <div class="step-number">01</div>
+          <h3>Multimodal Input</h3>
+          <p>Processes voice, text, and visual cues simultaneously for comprehensive understanding</p>
+        </div>
+        <div class="step" data-scroll>
+          <div class="step-number">02</div>
+          <h3>AI Reasoning</h3>
+          <p>Advanced neural networks analyze context and generate thoughtful responses</p>
+        </div>
+        <div class="step" data-scroll>
+          <div class="step-number">03</div>
+          <h3>Synchronized Output</h3>
+          <p>Speech, facial expressions, and gestures align naturally with the AI's reasoning</p>
+        </div>
+        <div class="step" data-scroll>
+          <div class="step-number">04</div>
+          <h3>Real-time Interaction</h3>
+          <p>Seamless, low-latency communication that feels like talking to a real person</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" data-scroll-section>
+      <div class="cta-content">
+        <h2 data-scroll>Ready to Experience the Future?</h2>
+        <p data-scroll>Join us in revolutionizing human–AI interaction</p>
+        <a href="home.html" style="text-decoration: none;">
+          <button class="magnetic-btn large" data-scroll>
+            <span>Get Started Today</span>
+          </button>
+        </a>
+      </div>
+    </section>
+
+    <footer class="footer" data-scroll-section>
+      <div class="footer-content">
+        <div class="footer-section">
+          <span class="logo">MIRAGE</span>
+          <p>Advancing human–AI interaction through expressive avatars</p>
+        </div>
+        <div class="footer-section">
+          <h4>Product</h4>
+          <ul>
+            <li>Features</li>
+            <li>Pricing</li>
+            <li>Use Cases</li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Company</h4>
+          <ul>
+            <li>About</li>
+            <li>Blog</li>
+            <li>Careers</li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <ul>
+            <li>Support</li>
+            <li>Sales</li>
+            <li>Partnerships</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Project MIRAGE. All rights reserved.</p>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+
+  <!-- Scripts -->
+  <script src="scripts/scroll.js"></script>
+  <script src="scripts/cursor.js"></script>
+  <script src="scripts/avatar.js"></script>
+  <script src="scripts/main.js"></script>
+  <script src="scripts/magnetic.js"></script>
+
+
+</body>
+</html>

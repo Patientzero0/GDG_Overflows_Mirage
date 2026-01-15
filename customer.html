@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIRAGE - Customer Service Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/customer.css">
+</head>
+<body>
+    <div class="custom-cursor"></div>
+
+
+
+    <main class="page-container">
+        <div class="avatar-section">
+            <div id="customer-lottie"></div>
+        </div>
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="avatar">
+                    <img src="https://i.pravatar.cc/40?u=customer" alt="Avatar">
+                </div>
+                <div class="username">
+                    <h2>Customer Service Assistant</h2>
+                    <p>Online</p>
+                </div>
+                <button id="theme-switcher">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <mask id="moon-mask">
+                        <rect x="0" y="0" width="24" height="24" fill="white" />
+                        <circle cx="18" cy="6" r="8" fill="black" />
+                      </mask>
+                      <circle cx="12" cy="12" r="6" fill="currentColor" mask="url(#moon-mask)" class="moon-icon" />
+                      <path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" fill="currentColor" class="sun-icon" />
+                      <path d="M12 4V2M12 22V20M4 12H2M22 12H20M19.071 4.92893L17.6569 6.34315M6.34315 17.6569L4.92893 19.071M19.071 19.071L17.6569 17.6569M6.34315 6.34315L4.92893 4.92893" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon" />
+                    </svg>
+                </button>
+            </div>
+            <div class="chat-messages">
+                <div class="message received">
+                    <p>Hello! How can I help you today?</p>
+                    <span>10:00 AM</span>
+                </div>
+                <div class="message sent">
+                    <p>I have a problem with my order.</p>
+                    <span>10:01 AM</span>
+                </div>
+                 <div class="message received">
+                    <p>I can help with that, what is the problem</p>
+                    <span>10:02 AM</span>
+                </div>
+
+            </div>
+            <div class="chat-input-container">
+                <input type="text" id="chat-input" placeholder="Type your message...">
+                <button id="send-btn">Send</button>
+                <button id="audio-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mic">
+                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                        <line x1="12" y1="19" x2="12" y2="23"></line>
+                        <line x1="8" y1="23" x2="16" y2="23"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/lottie-web@5.12.2/build/player/lottie.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="scripts/cursor.js"></script>
+    <script src="scripts/customer.js"></script>
+</body>
+</html>

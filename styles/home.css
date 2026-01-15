@@ -1,0 +1,101 @@
+.home-hero {
+    height: 60vh;
+    padding-top: 180px;
+    text-align: center;
+  }
+  
+  .home-hero h1 {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 800;
+  }
+  
+  .home-hero p {
+    margin-top: 12px;
+    opacity: 0.7;
+  }
+  
+  /* MODE GRID */
+  .mode-grid {
+    min-height: 100vh;
+    padding: 80px 120px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px;
+  }
+  
+  /* MODE CARD */
+  .mode-card {
+    position: relative;
+    padding: 40px;
+    border-radius: 36px;
+  
+    background: linear-gradient(
+      180deg,
+      rgba(255,255,255,0.08),
+      rgba(255,255,255,0.02)
+    );
+  
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255,255,255,0.12);
+  
+    cursor: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .mode-card h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 24px;
+  }
+  
+  .mode-card p {
+    margin-top: 12px;
+    opacity: 0.7;
+    max-width: 320px;
+  }
+  
+  .mode-card .enter {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.6;
+  }
+  
+  .lottie-box {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    margin-bottom: 24px;
+  }
+  
+  .mode-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  /* Center content nicely */
+  .mode-card h2 {
+    margin-top: 16px;
+  }
+
+#theme-switcher {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+
+
+body.light-theme {
+    background-color: #f0f2f5;
+    color: #000000;
+}

@@ -1,0 +1,306 @@
+/* General Styling */
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #000000;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.page-container {
+    display: flex;
+    height: 100vh;
+}
+
+
+
+/* Avatar Section */
+.avatar-section {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#customer-lottie {
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    max-height: 600px;
+    margin: auto;
+}
+
+/* Chat Container */
+.chat-container {
+    width: 60%;
+    margin-left: 40%;
+    display: flex;
+    flex-direction: column;
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Chat Header */
+.chat-header {
+    display: flex;
+    align-items: center;
+    padding: 20px 30px;
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.chat-header .avatar img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 20px;
+    border: 2px solid #3a3a3a;
+}
+
+.chat-header .username h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.chat-header .username p {
+    font-size: 0.8rem;
+    color: #9a9a9a;
+}
+
+/* Chat Messages */
+.chat-messages {
+    flex-grow: 1;
+    padding: 30px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+    max-width: 70%;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.message p {
+    padding: 15px 20px;
+    border-radius: 20px;
+    line-height: 1.5;
+    font-size: 1rem;
+}
+
+.message span {
+    font-size: 0.75rem;
+    color: #9a9a9a;
+    margin-top: 8px;
+}
+
+.message.sent {
+    align-self: flex-end;
+    align-items: flex-end;
+}
+
+.message.sent p {
+    background: rgba(59, 130, 246, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(59, 130, 246, 0.1);
+    color: #ffffff;
+    border-bottom-right-radius: 5px;
+}
+
+.message.received {
+    align-self: flex-start;
+    align-items: flex-start;
+}
+
+.message.received p {
+    background: rgba(42, 42, 42, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(42, 42, 42, 0.1);
+    color: #e0e0e0;
+    border-bottom-left-radius: 5px;
+}
+
+/* Chat Input */
+.chat-input-container {
+    display: flex;
+    padding: 20px 30px;
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#chat-input {
+    flex-grow: 1;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 15px;
+    background: rgba(42, 42, 42, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: #ffffff;
+    font-size: 1rem;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+#chat-input:focus {
+    background-color: #3a3a3a;
+}
+
+#send-btn {
+    border: none;
+    background-color: #3b82f6;
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 15px;
+    margin-left: 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+#send-btn:hover {
+    background-color: #2563eb;
+}
+
+/* Scrollbar */
+.chat-messages::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background-color: #3a3a3a;
+    border-radius: 10px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background-color: #1a1a1a;
+}
+
+/* Add this to the end of your customer.css file */
+
+#theme-switcher {
+    background-color: #3b82f6;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+body.light-theme {
+    background-color: #f0f2f5;
+    color: #000000;
+}
+
+body.light-theme .avatar-section {
+    background-color: #e9ecef;
+    border-right: 1px solid #ddd;
+}
+
+body.light-theme .chat-container,
+body.light-theme .chat-header,
+body.light-theme .chat-input-container,
+body.light-theme .message.received p,
+body.light-theme #chat-input {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #000000;
+}
+
+body.light-theme .message.received p,
+body.light-theme #chat-input {
+    background: rgba(233, 236, 239, 0.7);
+}
+
+body.light-theme .chat-header,
+body.light-theme .chat-input-container {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .username p {
+    color: #6c757d;
+}
+
+body.light-theme .message span {
+    color: #6c757d;
+}
+
+body.light-theme .chat-messages::-webkit-scrollbar-thumb {
+    background-color: #ced4da;
+}
+
+body.light-theme .chat-messages::-webkit-scrollbar-track {
+    background-color: #e9ecef;
+}
+#audio-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: 15px;
+    padding: 0;
+}
+
+#audio-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: #fff;
+    transition: stroke 0.3s;
+}
+
+#audio-btn:hover svg {
+    stroke: #3b82f6;
+}
+
+body.light-theme #audio-btn svg {
+    stroke: #000;
+}
+
+body.light-theme #audio-btn:hover svg {
+    stroke: #3b82f6;
+}
+
+/* Theme Switcher */
+#theme-switcher {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
