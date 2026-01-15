@@ -6,6 +6,7 @@ import StreamingAvatar, {
   TaskType,
 } from "@heygen/streaming-avatar";
 import ThemeSwitcher from '../components/ThemeSwitcher';
+import GoogleTranslate from '../components/GoogleTranslate';
 import { useDashboard } from '../context/DashboardContext';
 import '../styles/teacher.css';
 
@@ -248,6 +249,7 @@ const ChatPage = ({ type, lottieData, avatarSrc, title, welcomeMsg }) => {
             <p>{isSessionActive ? "Online" : "Offline"}</p>
           </div>
           <div style={{ marginLeft: 'auto', display: 'flex', gap: '10px', alignItems: 'center' }}>
+            <GoogleTranslate />
             <ThemeSwitcher />
           </div>
         </div>
