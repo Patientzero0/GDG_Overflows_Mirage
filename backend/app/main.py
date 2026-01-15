@@ -3,20 +3,21 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 import json
 import numpy as np
+import os
 
 from app.api import ask
 from app.rag.retriever import retriever
 from app.rag.embedder import embedder
 from app.ingest.youtube_transcript import get_youtube_transcripts, chunk_text
 from app.config.settings import settings
-import os
+from app.api.ask import CHAT_HISTORY_FILE # Import CHAT_HISTORY_FILE
 
 def auto_ingest_if_needed():
     """Auto-run ingestion if vector store doesn't exist"""
     if os.path.exists(settings.VECTOR_STORE_PATH):
         return  # Already ingested
     
-    print("\n🔄 Auto-ingesting data (first run)...\n")
+    print("\n🔄 Auto-ingesting data (first run)..\n")
     
     # 1. Fetch transcripts
     transcripts = get_youtube_transcripts(settings.YOUTUBE_VIDEO_IDS)
@@ -50,12 +51,16 @@ def auto_ingest_if_needed():
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Auto-ingest on startup if needed
-    auto_ingest_if_needed()
+    # Auto-ingest on startup if needed - COMMENTED OUT FOR DEBUGGING
+    # auto_ingest_if_needed() 
     
     # Load the RAG model on startup
     print("Loading RAG model...")
     try:
+        # DEBUG: Log path and existence just before loading
+        print(f"DEBUG: Checking for vector store at: {settings.VECTOR_STORE_PATH}")
+        print(f"DEBUG: Vector store exists: {os.path.exists(settings.VECTOR_STORE_PATH)}")
+
         if not os.path.exists(settings.VECTOR_STORE_PATH):
             print("WARNING: Vector store not found. Please run the ingestion script 'ingest_data.py'.")
             app.state.rag_ready = False
