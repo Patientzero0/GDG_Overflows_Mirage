@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Search, User, Database, History, MessageSquare } from 'lucide-react';
 
-const MemorySidebar = () => {
+const MemorySidebar = ({ memories = [], nextTopic }) => {
     const [activeTab, setActiveTab] = useState('context');
 
     const contextLog = [
@@ -25,42 +25,20 @@ const MemorySidebar = () => {
                         <div className="p-2 bg-blue-500/20 rounded-lg text-blue-400">
                             <User size={16} />
                         </div>
-                        <h3 className="text-sm font-semibold text-white">User Preferences</h3>
+                        <Search size={14} className="text-white/40 cursor-pointer hover:text-white" />
                     </div>
-                    <p className="text-xs text-white/60">Prefers concise explanations. Visual learner.</p>
-                </div>
 
-                <div className="bg-white/5 border border-white/10 rounded-xl p-4 hover:bg-white/10 transition-colors cursor-pointer">
-                    <div className="flex items-center gap-3 mb-2">
-                        <div className="p-2 bg-purple-500/20 rounded-lg text-purple-400">
-                            <History size={16} />
-                        </div>
-                        <h3 className="text-sm font-semibold text-white">Interaction History</h3>
+                    <div className="flex-1 overflow-y-auto space-y-3 pr-2 custom-scrollbar">
+                        {contextLog.map((log) => (
+                            <div key={log.id} className={`text-xs p-3 rounded-lg ${log.type === 'system' ? 'bg-yellow-500/10 border border-yellow-500/20 text-yellow-200' :
+                                    log.type === 'ai' ? 'bg-blue-500/10 border border-blue-500/20 text-blue-100' :
+                                        'bg-white/5 border border-white/10 text-gray-300'
+                                }`}>
+                                <span className="uppercase text-[10px] font-bold opacity-50 mb-1 block">{log.type}</span>
+                                {log.text}
+                            </div>
+                        ))}
                     </div>
-                    <p className="text-xs text-white/60">Last session: 2 hours ago. Topic: Project Management.</p>
-                </div>
-            </div>
-
-            {/* Context Log */}
-            <div className="flex-1 flex flex-col min-h-0">
-                <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-sm font-semibold text-white flex items-center gap-2">
-                        <MessageSquare size={16} className="text-teal-400" />
-                        Context Log
-                    </h3>
-                    <Search size={14} className="text-white/40 cursor-pointer hover:text-white" />
-                </div>
-
-                <div className="flex-1 overflow-y-auto space-y-3 pr-2 custom-scrollbar">
-                    {contextLog.map((log) => (
-                        <div key={log.id} className={`text-xs p-3 rounded-lg ${log.type === 'system' ? 'bg-yellow-500/10 border border-yellow-500/20 text-yellow-200' :
-                                log.type === 'ai' ? 'bg-blue-500/10 border border-blue-500/20 text-blue-100' :
-                                    'bg-white/5 border border-white/10 text-gray-300'
-                            }`}>
-                            <span className="uppercase text-[10px] font-bold opacity-50 mb-1 block">{log.type}</span>
-                            {log.text}
-                        </div>
-                    ))}
                 </div>
             </div>
         </div>

@@ -6,18 +6,20 @@ import StreamingAvatar, {
   TaskType,
 } from "@heygen/streaming-avatar";
 import ThemeSwitcher from '../components/ThemeSwitcher';
+import { useDashboard } from '../context/DashboardContext';
 import '../styles/teacher.css';
 
 const ChatPage = ({ type, lottieData, avatarSrc, title, welcomeMsg }) => {
   const HEYGEN_API_KEY = "sk_V2_hgu_kzgT30p9Q5j_lsLYyCuNNNi4sEU0bA5KfjygDL9Edkoy";
   const AVATAR_ID = "Bryan_IT_Sitting_public";
+  const { updateDashboard } = useDashboard();
 
   const [messages, setMessages] = useState([
     { text: welcomeMsg || "Hello! How can I help you today?", sender: "received", time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }
   ]);
   const [inputText, setInputText] = useState("");
   const [isSessionActive, setIsSessionActive] = useState(false);
-  const [isListening, setIsListening] = useState(false); // New state for mic status
+  const [isListening, setIsListening] = useState(false);
   const [avatar, setAvatar] = useState(null);
   const [debug, setDebug] = useState("System Offline");
 
@@ -26,7 +28,6 @@ const ChatPage = ({ type, lottieData, avatarSrc, title, welcomeMsg }) => {
   const avatarRef = useRef(null);
   const isInitRef = useRef(false);
 
-  // --- Fetch Token & Start Session (Existing Logic) ---
   const fetchAccessToken = async () => {
     try {
       const response = await fetch("https://api.heygen.com/v1/streaming.create_token", {
@@ -126,9 +127,7 @@ const ChatPage = ({ type, lottieData, avatarSrc, title, welcomeMsg }) => {
     };
   }, []);
 
-  // --- NEW: Voice Recognition Logic ---
   const startListening = () => {
-    // Check browser support
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
       alert("Your browser does not support voice recognition. Try Chrome or Edge.");
@@ -137,7 +136,7 @@ const ChatPage = ({ type, lottieData, avatarSrc, title, welcomeMsg }) => {
 
     const recognition = new SpeechRecognition();
     recognition.lang = 'en-US';
-    recognition.interimResults = false; // We only want final results
+    recognition.interimResults = false;
     recognition.maxAlternatives = 1;
 
     setIsListening(true);
@@ -145,8 +144,8 @@ const ChatPage = ({ type, lottieData, avatarSrc, title, welcomeMsg }) => {
 
     recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript;
-      setInputText(transcript); // Show text in box
-      handleSend(transcript);   // Auto-send the transcript
+      setInputText(transcript);
+      handleSend(transcript);
     };
 
     recognition.onerror = (event) => {
@@ -159,12 +158,8 @@ const ChatPage = ({ type, lottieData, avatarSrc, title, welcomeMsg }) => {
     };
   };
 
-  // --- MODIFIED: Handle Send (accepts manualText override) ---
   const handleSend = async (manualText = null) => {
-    // If manualText is provided (from voice), use it. Otherwise use state.
-    // Note: React events might pass an object, so check type.
     const textToSend = (typeof manualText === 'string' ? manualText : inputText).trim();
-
     if (!textToSend) return;
 
     const now = new Date();
@@ -177,29 +172,41 @@ const ChatPage = ({ type, lottieData, avatarSrc, title, welcomeMsg }) => {
     };
 
     setMessages(prev => [...prev, userMessage]);
-    setInputText(""); // Clear input
+    setInputText("");
 
-    // Make avatar speak the user's message (Echo)
-    if (isSessionActive) {
-      // Optional: Don't make avatar repeat user voice if you don't want to
-      // await avatarSpeak(textToSend); 
-    }
+    try {
+      const response = await fetch('http://localhost:8000/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question: textToSend })
+      });
 
-    // Simulate AI Response
-    setTimeout(() => {
+      if (!response.ok) throw new Error("Backend API Failed");
+
+      const data = await response.json();
+
+      updateDashboard(data);
+
       const responseTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      const aiResponse = "I heard you! You said: " + textToSend + ". How else can I assist?";
 
       setMessages(prev => [...prev, {
-        text: aiResponse,
+        text: data.answer,
         sender: "received",
         time: responseTime
       }]);
 
       if (isSessionActive) {
-        avatarSpeak(aiResponse);
+        await avatarSpeak(data.answer);
       }
-    }, 1500);
+
+    } catch (error) {
+      console.error("Chat API Error:", error);
+      setMessages(prev => [...prev, {
+        text: "I'm having trouble connecting to my brain. Please try again.",
+        sender: "received",
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      }]);
+    }
   };
 
   return (
@@ -262,29 +269,26 @@ const ChatPage = ({ type, lottieData, avatarSrc, title, welcomeMsg }) => {
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-            disabled={!isSessionActive && !isListening} // Allow input if listening to show preview
+            disabled={!isSessionActive && !isListening}
           />
 
           <button id="send-btn" onClick={() => handleSend()} disabled={!isSessionActive}>
             Send
           </button>
 
-          {/* UPDATED MIC BUTTON */}
           <button
             id="audio-btn"
             onClick={startListening}
             disabled={!isSessionActive || isListening}
             title="Voice message"
-            style={{ backgroundColor: isListening ? '#ff4444' : '' }} // Visual cue
+            style={{ backgroundColor: isListening ? '#ff4444' : '' }}
             className={isListening ? "listening-pulse" : ""}
           >
             {isListening ? (
-              /* Stop Icon when listening */
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="6" y="6" width="12" height="12"></rect>
               </svg>
             ) : (
-              /* Mic Icon */
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
                 <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
